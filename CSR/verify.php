@@ -19,14 +19,16 @@
 	$username=$_POST['username'];
 	$username=mysqli_real_escape_string($conn,$username);
 	$p=$_POST['password'];
-	$query="select pw from user where username='{$username}'";
+	$query="select pw,truename from user where username='{$username}'";
 	$result=mysqli_fetch_array(mysqli_query($conn,$query));
 	if(!$result){die('0');}
 	$pwd=$result['pw'];
+	$truename=$result['truename'];
 	if($p=md5($pwd)){
 		session_start();
 		$_SESSION['logged']=true;
 		$_SESSION['adminname']=$username;
+		$_SESSION['truename']=$truename;
 		$token=random(16).';';
 		$_SESSION['token']=$token;
 		die('1|'.$token);
