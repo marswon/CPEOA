@@ -1,3 +1,13 @@
+<html>
+<body>
+<form method="post">
+<input type="text" name="username">
+<input type="text" name="password">
+<input type="submit">
+</form>
+</body>
+</html>
+
 <?php
 	function random($len) {
    		$srcstr = "6K2D8U9B0L3S7W4Q";
@@ -33,9 +43,11 @@
 
 	for($t=0; $t < $times; $t++){
 	  $md5pass=md5($md5pass);
+	  echo $md5pass."<br>";
 	}
 
   $pass=md5($md5pass.$salt);
+  echo "<br><br>加密后的密码".$md5pass."<br>密文".$salt."<br>次数".$times."<br>数据库密码".$pwd."<br>完成后密码".$pass."<br>";
 	
 	if($pass==$pwd){
 		session_start();
@@ -49,3 +61,4 @@
 	
 	die();
 ?>
+

@@ -12,12 +12,15 @@
 <span class="glyphicon glyphicon glyphicon-tasks" aria-hidden="true"></span> 工作单管理
 <span class="caret"></span></a>
 <ul class="dropdown-menu" role="menu">
+
   <li><a href="/CSR/WorkOrder/toList.php?token=<?php echo $_SESSION["token"]?>">工作单列表</a></li>
-  <li><a href="/CSR/WorkOrder/toAddList.php?token=<?php echo $_SESSION["token"]?>">新增工作单</a></li>  <?php if($_SESSION['qx']>=8){ ?>
+  <li><a href="/CSR/WorkOrder/toAddList.php?token=<?php echo $_SESSION["token"]?>">新增工作单</a></li>  <?php if($_SESSION['qx']>=4){ ?>
   <li role="separator" class="divider"></li>
-  <li><a href="/CSR/WorkOrder/toManage.php?token=<?php echo $_SESSION["token"]?>">管理所有工作单</a></li>
   <li><a href="/CSR/WorkOrder/toReturn.php?token=<?php echo $_SESSION["token"]?>">退单操作</a></li>
-  <?php } ?>
+  <?php if($_SESSION['qx']>=8){ ?>
+  <li><a href="/CSR/WorkOrder/toManage.php?token=<?php echo $_SESSION["token"]?>">管理所有工作单</a></li>
+  <?php } } ?>
+
 </ul>
 </li>
 
@@ -27,12 +30,6 @@
 <span class="caret"></span></a>
 <ul class="dropdown-menu" role="menu">
   <li><a href="/CSR/PurchaseOrder/toList.php?token=<?php echo $_SESSION["token"]?>">采购单列表</a></li>
-  <li><a href="/CSR/PurchaseOrder/toAddList.php?token=<?php echo $_SESSION["token"]?>">新增采购单</a></li>
-  <?php if($_SESSION['qx']>=8){ ?>
-  <li role="separator" class="divider"></li>
-  <li><a href="/CSR/PurchaseOrder/toManage.php?token=<?php echo $_SESSION["token"]?>">管理所有采购单</a></li>
-  <li><a href="/CSR/PurchaseOrder/toReturn.php?token=<?php echo $_SESSION["token"]?>">退单操作</a></li>
-  <?php } ?>
 </ul>
 </li>
         

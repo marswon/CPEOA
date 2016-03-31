@@ -4,22 +4,21 @@ $flag=true;//SQL连接认证
 require_once("../include/to_sql.php");
 require_once("../include/isLoggedIn.php");
 $token=$_SESSION['token'];
-if($_SESSION['qx'] < 8){header("Location:/CSR/WorkOrder/toList.php?token=$token");}
+if($_SESSION['qx'] < 8){header("Location:/CSR/PurchaseOrder/toList.php?token=$token");}
 $id=$_GET['odid'];
 $query="select * from workorder where odid='".$id."'";
 $rs=mysqli_fetch_array(mysqli_query($conn,$query));
 
 //检测是否存在此单，防止恶意修改
 if(!$rs){
-header("Location:/CSR/WorkOrder/toReturn.php?token=$token");
+header("Location:/CSR/PurchaseOrder/toList.php?token=$token");
 }
 
 if($_POST){
-$applyREASON=$_POST['reason'];
-$applyHUMAN=$_POST['human'];
-$query="UPDATE workorder SET tdreason='".$applyREASON."',tdhuman='".$applyHUMAN."',status='已退单' WHERE odid='".$id."'";
-$result=mysqli_query($conn,$query);
-header("Location:/CSR/WorkOrder/toManage.php?token=$token");
+  $applyid=$_POST['id'];
+$sql="UPDATE workorder SET purchaseid='{$applyid}'";
+$rs2=mysqli_query($conn,$sql);
+header("Location:/CSR/PurchaseOrder/toList.php?token=$token");
 }
 ?>
 
@@ -42,8 +41,8 @@ header("Location:/CSR/WorkOrder/toManage.php?token=$token");
 <?php include("../include/shownav.php"); ?>
 <h1 class="h1 text-center">编辑<?php echo $id; ?>号工作单</h1>
 <div class="row col-md-10 col-md-offset-1"><hr>
-<table class="table table-hover table-striped table-bordered">
-
+<form method="post">
+<table class="table table-hover table-striped table-bordered" style="border-radius: 5px; border-collapse: separate;" id="tbSign">
 <tr>
 <th width="12%"><center>工作单编号</center></th><td>
 <?php echo $rs['odid']; ?>
@@ -83,26 +82,18 @@ header("Location:/CSR/WorkOrder/toManage.php?token=$token");
 <th width="12%"><center>状态</center></th><td>
 <?php echo $rs['status']; ?>
 </td></tr>
-</table><div class="row"><hr>
-
-<!--POST表格 退单-->
-<form method="post">
-<table class="table table-hover table-striped table-bordered">
-<tr>
-<th width="12%"><center>退单原因</center></th><td>
-<input class="form-control" name="reason">
-</td></tr>
 
 <tr>
-<th width="12%"><center>退单人</center></th><td>
-<input class="form-control" name="human">
+<th width="12%"><center>采购单号码</center></th><td>
+<input type="text" class="form-control" name="id" value="<?php echo $rs['purchaseid']; ?>">
 </td></tr>
 
 </table>
-<div class="row"><hr>
 
+
+<div class="row"><hr>
 <center>
-<input type="submit" class="btn btn-success" style='width:300px;height:40px;' value="确 定 退 单（不可挽回的！请看清！）" name="modify">
+<input type="submit" class="btn btn-success" style='width:200px;height:40px;' value="确 认 录 入 采 购 单 号 码" name="modify">
 </center>
 </form>
 

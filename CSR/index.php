@@ -42,8 +42,8 @@ require_once("include/isLoggedIn.php");
 
 <h2 class="h2 text-center">恐怖的操作！谨慎操作啊！！！</h2>
 <div class="row col-md-10 col-md-offset-1"><hr>
-<button class="btn btn-danger" style="width:100%" ><h4><b>重 &nbsp;&nbsp;置 &nbsp;&nbsp;账 &nbsp;&nbsp;户 &nbsp;&nbsp;状 &nbsp;&nbsp;态</b></h4></button><br><br>
-<button class="btn btn-danger" style="width:100%" ><h4><b>临 &nbsp;&nbsp;时 &nbsp;&nbsp;挂 &nbsp;&nbsp;失 &nbsp;&nbsp;账 &nbsp;&nbsp;户 （非 被 盗 请 勿 戳 此！）</b></h4></button><br><br>
+<button class="btn btn-danger" style="width:100%" onclick="window.location.href='Personal/InvaledtoWatch.php?token=<?php echo $_SESSION["token"]?>'"><h4><b>重 &nbsp;&nbsp;置 &nbsp;&nbsp;账 &nbsp;&nbsp;户 &nbsp;&nbsp;状 &nbsp;&nbsp;态</b></h4></button><br><br>
+<button class="btn btn-danger" style="width:100%" onclick="window.location.href='Personal/InvaledtoWatch.php?token=<?php echo $_SESSION["token"]?>'"><h4><b>临 &nbsp;&nbsp;时 &nbsp;&nbsp;挂 &nbsp;&nbsp;失 &nbsp;&nbsp;账 &nbsp;&nbsp;户 （非 被 盗 请 勿 戳 此！）</b></h4></button><br><br>
 
 <?php include("include/showbanner.php"); ?>
 <script src="js/md5.js"></script>
@@ -52,3 +52,6 @@ require_once("include/isLoggedIn.php");
 <script src="js/bootstrap-switch.min.js"></script>
 <script src="js/material.min.js"></script>
 <script src="js/ripples.js"></script>
+
+</body>
+</html>

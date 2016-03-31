@@ -50,69 +50,52 @@ header("Location:/CSR/WorkOrder/toManage.php?token=$token");
 <form method="post">
 <table class="table table-hover table-striped table-bordered" style="border-radius: 5px; border-collapse: separate;" id="tbSign">
 <tr>
-<th width="12%"><center>工作单编号</center></th>
-<td>
+<th width="12%"><center>工作单编号</center></th><td>
 <?php echo $rs['odid']; ?>
-</td>
-</tr>
+</td></tr>
 
 <tr>
-<th width="12%"><center>交单时间</center></th>
-<td>
+<th width="12%"><center>交单时间</center></th><td>
 <input class="form-control" name="odtime" value="<?php echo $rs['odtime']; ?>">
-</td>
-</tr>
+</td></tr>
 
 <tr>
-<th width="12%"><center>交单部门</center></th>
-<td>
+<th width="12%"><center>交单部门</center></th><td>
 <input class="form-control" name="oddep" value="<?php echo $rs['oddep']; ?>">
-</td>
-</tr>
+</td></tr>
 
 <tr>
-<th width="12%"><center>派单值工</center></th>
-<td>
+<th width="12%"><center>派单值工</center></th><td>
 <input class="form-control" name="odhuman" value="<?php echo $rs['odhuman']; ?>">
-</td>
-</tr>
+</td></tr>
 
 <tr>
-<th width="12%"><center>工作单内容</center></th>
-<td>
+<th width="12%"><center>工作单内容</center></th><td>
 <textarea class="form-control" name="odcontent" rows="3" style="resize:none;"><?php echo $rs['odcontent']; ?></textarea>
-</td>
-</tr>
+</td></tr>
 
 <tr>
-<th width="12%"><center>联系人</center></th>
-<td>
+<th width="12%"><center>联系人</center></th><td>
 <input class="form-control" name="contact" value="<?php echo $rs['contact']; ?>">
-</td>
-</tr>
+</td></tr>
 
 <tr>
-<th width="12%"><center>联系人电话</center></th>
-<td>
+<th width="12%"><center>联系人电话</center></th><td>
 <input class="form-control" name="phone" value="<?php echo $rs['phone']; ?>">
-</td>
-</tr>
+</td></tr>
 
 <tr>
-<th width="12%"><center>状态</center></th>
-<td>
+<th width="12%"><center>状态</center></th><td>
 <input class="form-control" name="status" value="<?php echo $rs['status']; ?>">
-</td>
-</tr>
+</td></tr>
 
 </table>
+
+
 <div class="row"><hr>
 <center>
 <input type="submit" class="btn btn-success" style='width:200px;height:40px;' value="提 交 修 改" name="modify">
 </center>
 </form>
-
-
-
 
 <?php include("../include/showbanner.php"); ?>

@@ -5,9 +5,9 @@
 		header("status: 403 Forbidden"); 
 		die();
 	}
-	$conn=@mysqli_connect("localhost","root","","u680304543_csr");
+	$conn=@mysqli_connect("localhost","root","csr027368","u332869884_csr");
 	if(mysqli_connect_errno($conn)){
-		die("无法连接数据库，错误代码".mysqli_connect_errno($conn));
+		die("无法连接数据库，错误代码:".mysqli_connect_errno($conn));
 	}
 	mysqli_set_charset($conn,"utf8");
 ?>

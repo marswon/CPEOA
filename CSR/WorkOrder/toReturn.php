@@ -65,10 +65,11 @@ $info=mysqli_query($conn,"select * from workorder order by id desc limit $offset
 <td width="12%"><center><?php echo $rs['phone']; ?></center></td>
 <td width="9%"><center><?php echo $rs['status']; ?></center></td>
 <td width="8%"><center>
+<?php if($rs['status']!="已退单") {?>
 <button class='btn btn-info' onclick="window.location.href='toReturnList.php?odid='+'<?php echo $rs['odid']; ?>'+'&token='+'<?php echo $_SESSION['token']; ?>'">退单</button>
 </center></td>
 </center></td>
-<?php } ?>
+<?php }} ?>
 
 </table>
 </div>

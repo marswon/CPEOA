@@ -2,8 +2,6 @@
 $flag=true;//SQL连接认证
 require_once("../include/to_sql.php");
 require_once("../include/isLoggedIn.php");
-$token=$_SESSION['token'];
-if($_SESSION['qx'] < 8){header("Location:/CSR/WorkOrder/toList.php?token=$token");}
 
 //分页显示
 $sql="select * from workorder order by id asc";
@@ -16,6 +14,10 @@ If($page>$totalpage || $page == 0){
 }
 $offset=($page-1)*$info_num; 
 $info=mysqli_query($conn,"select * from workorder order by id desc limit $offset,$info_num");
+
+if($_POST['addpurchase']){
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +42,7 @@ $info=mysqli_query($conn,"select * from workorder order by id desc limit $offset
 
 <div class="row col-md-10 col-md-offset-1">
 <hr>
-<table class="table table-hover table-striped table-bordered" style="border-radius: 5px; border-collapse:separate;" id="tbSign">        
+<table class="table table-hover table-striped table-bordered" style="border-radius: 5px; border-collapse: separate;" id="tbSign">        
 
 <tr>
 <td><center>订单号</center></td>
@@ -51,26 +53,23 @@ $info=mysqli_query($conn,"select * from workorder order by id desc limit $offset
 <td><center>联系人</center></td>
 <td><center>联系人电话</center></td>
 <td><center>状态</center></td>
+<td><center>采购单号</center></td>
 <td><center>操作</center></td>
 
 
 <?php while($rs=mysqli_fetch_array($info)){ ?>
 <tr>
-<td><center><?php echo $rs['odid']; ?><center></td>
-<td width="11.5%"><center><?php echo $rs['odtime']; ?></center></td>
-<td width="9%"><center><?php echo $rs['oddep']; ?></center></td>
-<td width="9%"><center><?php echo $rs['odhuman']; ?></center></td>
+<td><center><input type="text" class="form-control" value="<?php echo $rs['odid']; ?>" name="id" readonly="readonly"></center></td>
+<td width="10"><center><?php echo $rs['odtime']; ?></center></td>
+<td width="10%"><center><?php echo $rs['oddep']; ?></center></td>
+<td width="10%"><center><?php echo $rs['odhuman']; ?></center></td>
 <!--<td width="26%"><center><?php echo $rs['odcontent']; ?></center></td>-->
-<td width="9%"><center><?php echo $rs['contact']; ?></center></td>
+<td width="10%"><center><?php echo $rs['contact']; ?></center></td>
 <td width="12%"><center><?php echo $rs['phone']; ?></center></td>
-<td width="9%"><center><?php echo $rs['status']; ?></center></td>
-<td width="15%"><center>
-<?php if($rs['status']!="已退单") {?>
-<button class='btn btn-info' onclick="window.location.href='toManageList.php?odid='+'<?php echo $rs['odid']; ?>'+'&token='+'<?php echo $_SESSION['token']; ?>'">编辑</button>
-<button class='btn btn-danger' onclick="window.location.href='toDeleteList.php?odid='+'<?php echo $rs['odid']; ?>'+'&token='+'<?php echo $_SESSION['token']; ?>'">删除</button>
-</center></td>
-<?php }} ?>
-
+<td width="10%"><center><font color="red"><?php echo $rs['status']; ?></font></center></td>
+<td width="10%"><center><?php echo $rs['purchaseid']; ?></center></td>
+<td width="10%"><center><input type="submit" class="btn btn-info" onclick="window.location.href='toAddList.php?odid='+'<?php echo $rs['odid']; ?>'+'&token='+'<?php echo $_SESSION['token']; ?>'" value="录入采购单号"></center></td>
+<?php } ?>
 </table>
 </div>
 
@@ -85,9 +84,9 @@ if($next>$totalpage){$next=$page;}
 <div class="row col-md-10 col-md-offset-1"><hr>
 <center>
 <h3>页面选择</h3>
-<button class='btn btn-info' style='width:20%' onclick="window.location.href='toList.php?page=1'">首页</button>
-<button class='btn btn-info' style='width:20%' onclick="window.location.href='toList.php?page='+<?php echo $pre; ?>">上一页</button>
-<button class='btn btn-info' style='width:20%' onclick="window.location.href='toList.php?page='+<?php echo $next; ?>">下一页</a></button>
+<button class='btn btn-info' style='width:20%' onclick="window.location.href='toList.php?page=1&token='+'<?php echo $_SESSION['token']; ?>'">首页</button>
+<button class='btn btn-info' style='width:20%' onclick="window.location.href='toList.php?page='+<?php echo $pre; ?>+'&token='+'<?php echo $_SESSION['token']; ?>'">上一页</button>
+<button class='btn btn-info' style='width:20%' onclick="window.location.href='toList.php?page='+<?php echo $next; ?>+'&token='+'<?php echo $_SESSION['token']; ?>'">下一页</a></button>
 <?php } 
 ?>
 </div>
